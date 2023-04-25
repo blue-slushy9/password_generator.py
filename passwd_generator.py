@@ -45,9 +45,9 @@ if 'numbers' in types_of_chars or 'all' in types_of_chars:
     confirm_nums = input().lower()
     print()
     
-    if confirm_nums == 'yes' or 'y':
+    if confirm_nums == 'yes' or confirm_nums == 'y':
         confirm_nums = True 
-    elif confirm_nums == 'no' or 'n':
+    elif confirm_nums == 'no' or confirm_nums == 'n':
         confirm_nums = False 
 
 if 'symbols' in types_of_chars or 'all' in types_of_chars:
@@ -69,7 +69,7 @@ if 'symbols' in types_of_chars or 'all' in types_of_chars:
 
 available_chars = []
 
-if 'letters' in types_of_chars:
+if 'letters' in types_of_chars or 'all' in types_of_chars:
     if confirm_letters == True:
         if 'lower' in types_of_letters:
             lower_alphabet = string.ascii_lowercase
@@ -83,21 +83,25 @@ if 'letters' in types_of_chars:
             available_chars.extend(list(lower_alphabet))
             available_chars.extend(list(upper_alphabet))
 
-if 'numbers' in types_of_chars:
+if 'numbers' in types_of_chars or 'all' in types_of_chars:
     if confirm_nums == True:
         for i in range(10):
             available_chars.append(str(i))
 
-if 'symbols' in types_of_chars:
+if 'symbols' in types_of_chars or 'all' in types_of_chars:
     if confirm_symbols == True:
         available_chars.extend(types_of_symbols)
 
-passwd = []
+if len(available_chars) <= 0:
+    print("No characters have been designated to be included in the password. Please restart the program.\n")
 
-for n in range(num_of_chars):
-    add_char = random.choice(available_chars)
-    passwd.append(add_char)
+else:
+    passwd = []
 
-join_passwd = (''.join(passwd))
+    for n in range(num_of_chars):
+        add_char = random.choice(available_chars)
+        passwd.append(add_char)
 
-print(f"Congratulations, here is your password: {join_passwd}\n")
+    join_passwd = (''.join(passwd))
+
+    print(f"Congratulations, here is your password: {join_passwd}\n")
